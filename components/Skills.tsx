@@ -56,7 +56,7 @@ export default function Skills() {
             className="rounded-xl bg-[#262626] border border-gray-600/60 p-6 shadow-lg"
           >
             <h3 className="text-sm font-semibold uppercase tracking-wider text-emerald-400/90 mb-4">
-              Technologies
+              Programming Languages
             </h3>
             <ul className="flex flex-wrap gap-2">
               {technologies.map((tech, i) => (
