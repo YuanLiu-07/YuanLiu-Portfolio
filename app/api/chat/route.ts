@@ -1,8 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
 import OpenAI from "openai";
 
-const openai = new OpenAI({ apiKey: process.env.OPENAI_API_KEY });
-
 export async function POST(req: NextRequest) {
   try {
     const { messages } = await req.json();
@@ -19,6 +17,7 @@ export async function POST(req: NextRequest) {
         { status: 500 }
       );
     }
+    const openai = new OpenAI({ apiKey: key });
     const systemPrompt = `You are Yuan Liu's personal assistant on his portfolio website. You speak in first person as if you are representing Yuan, or in a friendly assistant tone. Use the following information about Yuan to answer visitors' questions accurately and concisely.
 
 About Yuan Liu:
