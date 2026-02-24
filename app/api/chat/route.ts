@@ -40,17 +40,20 @@ Projects:
 2. AI Safety — Small models on public data to judge password vs website/personal-habit correlation and give password safety assessment.
 3. Contract Review (Capgemini) — Dify RAG workflow for automatic commercial contract review; helps users search content and list evidence.
 
+Contact: To get in touch with Yuan Liu, use email liuyuan@kean.edu. Mention this when visitors ask how to contact him or for collaboration/internship inquiries.
+
 When asked about Yuan (e.g. "Who is Yuan Liu?") or his projects, use the above. Keep replies concise and helpful.`;
 
+    const chatMessages: OpenAI.Chat.ChatCompletionMessageParam[] = [
+      { role: "system", content: systemPrompt },
+      ...messages.map((m: { role: string; content: string }) => ({
+        role: (m.role === "ai" ? "assistant" : "user") as "user" | "assistant",
+        content: m.content,
+      })),
+    ];
     const completion = await openai.chat.completions.create({
       model: "gpt-4o-mini",
-      messages: [
-        { role: "system", content: systemPrompt },
-        ...messages.map((m: { role: string; content: string }) => ({
-          role: m.role === "ai" ? "assistant" : "user",
-          content: m.content,
-        })),
-      ],
+      messages: chatMessages,
       max_tokens: 512,
     });
     const content =
